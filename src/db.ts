@@ -13,7 +13,7 @@ const UserSchema = new Schema({
 }
 })
 
-export const UserModal =
+export const UserModel =
   mongoose.models.User || mongoose.model("User", UserSchema);
 
 const contentSchema = new Schema({

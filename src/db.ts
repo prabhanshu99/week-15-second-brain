@@ -5,22 +5,18 @@ mongoose.connect("mongodb+srv://prabhanshuop:X0ZVCoVdF3X1Doob@cluster0.ho3qpjr.m
 
 
 const UserSchema = new Schema({
-    username:{type:String,unique:true},
-    password:{
-  type: String,
-  required: true,
-  select: false
-}
+    username: {type: String, unique: true},
+    password: String
 })
 
-export const UserModel =
-  mongoose.models.User || mongoose.model("User", UserSchema);
+export const UserModel = model("User", UserSchema);
 
-const contentSchema = new Schema({
-    title:String,
-    link:String,
-    tags: [{type:mongoose.Types.ObjectId, ref:"Tag"}],
-    userId:{type:mongoose.Types.ObjectId, ref:"User", required:true }
+const ContentSchema = new Schema({
+    title: String,
+    link: String,
+    tags: [{type: mongoose.Types.ObjectId, ref: 'Tag'}],
+    type: String,
+    userId: {type: mongoose.Types.ObjectId, ref: 'User', required: true },
 })
 
-export const ContentModel = model("User",contentSchema);
+export const ContentModel = model("Content", ContentSchema);

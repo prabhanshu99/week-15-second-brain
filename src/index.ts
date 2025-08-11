@@ -38,7 +38,7 @@ app.post("/api/v1/signin", async (req,res)=>{
     const username=req.body.username;
     const password=req.body.password;
 
-    const existingUser = await UserModel.findOne({ username }).select("+password");
+    const existingUser:any = await UserModel.findOne({ username }).select("+password");
 
         if (!existingUser) {
             return res.status(403).json({ message: "Incorrect credentials" });
@@ -60,9 +60,10 @@ app.post("/api/v1/content", userMiddleware, async (req,res)=>{
     const link = req.body.link;
     const type = req.body.type;
 
-    ContentModel.create({
+    await ContentModel.create({
         link,
         type,
+        title: req.body.title,
         //@ts-ignore
         userId: req.userId,
         tags: []
